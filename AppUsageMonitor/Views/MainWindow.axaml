@@ -1,0 +1,149 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AppUsageMonitor.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="360" SizeToContent="WidthAndHeight" CanResize="False"
+        x:Class="AppUsageMonitor.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AppUsageMonitor"
+        Background="Transparent">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <DockPanel>
+        <DockPanel.Background>
+            <ImageBrush asyncImageLoader:ImageBrushLoader.Source="bg/background.png"
+                        Opacity="50"
+                        Stretch="Fill" />
+        </DockPanel.Background>
+        <StackPanel Width="200"
+                    Height="360"
+                    HorizontalAlignment="Left"
+                    Background="Transparent">
+            <ListBox x:Name="Features" Height="200">
+                <ListBox.Styles>
+                    <Style Selector="ListBoxItem">
+                        <Setter Property="Padding" Value="20" />
+                        <Setter Property="FontSize" Value="20" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="Width" Value="200" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="Foreground" Value="Black" />
+                    </Style>
+                </ListBox.Styles>
+                <ListBoxItem x:Name="SelectProgram">
+                    <TextBlock Text="选择程序" />
+                </ListBoxItem>
+                <ListBoxItem x:Name="ViewThisMonth">
+                    <TextBlock Text="查看当月使用情况" />
+                </ListBoxItem>
+                <ListBoxItem x:Name="AddProgram">
+                    <TextBlock Text="添加程序" />
+                </ListBoxItem>
+            </ListBox>
+            <DockPanel VerticalAlignment="Bottom"
+                       Height="160">
+                <StackPanel>
+                    <Button x:Name="ButtonExport"
+                            Click="ButtonExport_OnClick"
+                            Background="#3202FFFF"
+                            Foreground="GreenYellow"
+                            FontWeight="Bold"
+                            Width="150"
+                            Height="60"
+                            Margin="10">
+                        导出所有为Excel
+                    </Button>
+                    <Button x:Name="ButtonDelete"
+                            Click="ButtonDelete_OnClick"
+                            Background="#3202FFFF"
+                            Foreground="Red"
+                            FontWeight="Bold"
+                            Width="150"
+                            Height="60">
+                        移除选中程序
+                    </Button>
+                </StackPanel>
+            </DockPanel>
+        </StackPanel>
+        <StackPanel Width="600" Height="360"
+                    HorizontalAlignment="Right"
+                    Background="Transparent">
+
+            <StackPanel x:Name="PanelSelectProgram"
+                        IsVisible="False">
+                <ListBox
+                    x:Name="ListSelectProgram"
+                    BorderBrush="#50E6E6E6"
+                    Focusable="True"
+                    BorderThickness="8"
+                    Height="360">
+                    <ListBox.Styles>
+                        <Style Selector="ListBoxItem">
+                            <Setter Property="FontSize" Value="24" />
+                            <Setter Property="Padding" Value="6" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="FontWeight" Value="3000" />
+                        </Style>
+                    </ListBox.Styles>
+                </ListBox>
+            </StackPanel>
+            <StackPanel x:Name="PanelViewThisMonth"
+                        IsVisible="False">
+                <TextBlock x:Name="CurrentProgramTextBlock" Padding="16" FontWeight="2000" TextAlignment="Center" Foreground="Black" FontSize="20"
+                           HorizontalAlignment="Center" Text="未选择程序" />
+                <DockPanel>
+                    <StackPanel x:Name="PanelViewToday" Width="300" Height="360" HorizontalAlignment="Left">
+                        <TextBlock Padding="26" FontWeight="2000" Text="日使用" Foreground="Black" FontSize="36" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="TodayUsageTextBlock" Padding="26" FontWeight="2000" TextAlignment="Center" Foreground="Black" FontSize="36" />
+                    </StackPanel>
+                    <StackPanel x:Name="PanelViewMonth" Width="300" Height="360" HorizontalAlignment="Right" IsVisible="True">
+                        <TextBlock Padding="26" FontWeight="2000" Text="月使用" Foreground="Black" FontSize="36" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="MonthUsageTextBlock" Padding="26" FontWeight="2000" TextAlignment="Center" Foreground="Black" FontSize="36" />
+                    </StackPanel>
+                </DockPanel>
+            </StackPanel>
+            <StackPanel x:Name="PanelAddProgram"
+                        IsVisible="True">
+                <TextBlock Classes="Heading2" Text="添加程序" Foreground="Aquamarine" FontSize="20" />
+                <ListBox x:Name="ListAddProcess"
+                         BorderBrush="#50E6E6E6"
+                         Focusable="True"
+                         BorderThickness="3"
+                         Height="300">
+                    <ListBox.Styles>
+                        <Style Selector="ListBoxItem">
+                            <Setter Property="FontSize" Value="16" />
+                            <Setter Property="Padding" Value="6" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="FontWeight" Value="3000" />
+                        </Style>
+                    </ListBox.Styles>
+                </ListBox>
+                <Button x:Name="ButtonAddProcess"
+                        Width="100"
+                        Height="30"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Padding="0"
+                        Background="Transparent"
+                        Foreground="LawnGreen"
+                        Opacity="50"
+                        Click="AddProcessButtonClicked">
+                    添加
+                </Button>
+            </StackPanel>
+
+        </StackPanel>
+    </DockPanel>
+
+</Window>
