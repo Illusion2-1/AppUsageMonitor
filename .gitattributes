@@ -1,8 +1,35 @@
-# Auto detect text files and perform LF normalization
-*          text=auto
+# 指定项目默认的行为，通常是文本文件使用LF结束符
+* text=auto
 
-*.cs       text diff=csharp
-*.cshtml   text diff=html
-*.csx      text diff=csharp
-*.sln      text eol=crlf
-*.csproj   text eol=crlf
+*.cs linguist-language=C#
+
+*.xml linguist-language=XML
+
+*.sql linguist-language=SQL
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.exe binary
+*.dll binary
+*.zip binary
+*.gz binary
+*.tar binary
+*.rar binary
+
+# 忽略文档生成的二进制文件，如果有的话
+*.pdf binary
+
+# 确保文本文件使用LF结束符，即在提交时转换为LF，在签出时不转换
+*.cs text eol=lf
+*.xml text eol=lf
+*.sql text eol=lf
+
+# 保证脚本文件在签出时保持LF，以避免Unix系统上的执行问题
+*.sh text eol=lf
+
+# 对于Windows特有的文件，确保它们总是使用CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
