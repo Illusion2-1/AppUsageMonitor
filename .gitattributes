@@ -3,7 +3,7 @@
 
 *.cs linguist-language=C#
 
-*.xml linguist-language=XML
+*.axaml linguist-language=XML
 
 *.sql linguist-language=SQL
 
