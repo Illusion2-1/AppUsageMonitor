@@ -24,7 +24,7 @@ internal partial class MessageBox : Window {
     }
 
     public static Task<MessageBoxResult> Show(Window parent, string text, string title, MessageBoxButtons buttons) {
-        var msgbox = new MessageBox() {
+        var msgbox = new MessageBox {
             Title = title
         };
         msgbox.FindControl<TextBlock>("Text")!.Text = text;

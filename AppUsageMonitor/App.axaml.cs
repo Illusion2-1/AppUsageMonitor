@@ -1,13 +1,13 @@
 using System;
+using AppUsageMonitor.ViewModels;
+using AppUsageMonitor.Views;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using AppUsageMonitor.ViewModels;
-using AppUsageMonitor.Views;
 
 namespace AppUsageMonitor;
 
-public partial class App : Application {
+public class App : Application {
     private MainWindow? _mainWindow;
 
     public override void Initialize() {

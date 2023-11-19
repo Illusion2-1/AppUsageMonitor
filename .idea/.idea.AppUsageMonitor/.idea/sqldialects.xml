@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/AppUsageMonitor/DatabaseToExcelConverter.cs" dialect="Snowflake" />
     <file url="file://$PROJECT_DIR$/AppUsageMonitor/Models/AppUsageDatabase.cs" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/AppUsageMonitor/Models/Middleware.cs" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/AppUsageMonitor/QueryCommands.sql" dialect="SQLite" />
   </component>
 </project>

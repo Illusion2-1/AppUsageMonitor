@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace AppUsageMonitor.Views; 
+namespace AppUsageMonitor.Views;
 
 public partial class ChartWindow : Window {
     public ChartWindow() {

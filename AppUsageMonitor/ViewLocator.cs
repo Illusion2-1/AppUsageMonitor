@@ -1,7 +1,7 @@
 using System;
+using AppUsageMonitor.ViewModels;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using AppUsageMonitor.ViewModels;
 
 namespace AppUsageMonitor;
 

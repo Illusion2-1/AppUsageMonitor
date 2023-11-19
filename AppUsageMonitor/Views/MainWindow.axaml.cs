@@ -15,6 +15,7 @@ namespace AppUsageMonitor.Views;
 public partial class MainWindow : Window {
     public static readonly Monitor Monitor = new("AppUsage.db");
     public static string? SelectedProcess = new("");
+
     public MainWindow() {
         InitializeComponent();
         Features = this.FindControl<ListBox>("Features");
@@ -151,13 +152,12 @@ public partial class MainWindow : Window {
     public void ShowWindow() {
         Show();
         Activate();
-    }
-
-    // ReSharper disable UnusedParameter.Local
+    } // ReSharper disable UnusedParameter.Local
     private void ButtonExport_OnClick(object? sender, RoutedEventArgs e) {
         var databaseToExcel = new DatabaseToExcelConverter();
-        if (!Directory.Exists(Path.Combine(Environment.CurrentDirectory, "Data"))) Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory, "Data")) ;
-        databaseToExcel.Convert("AppUsage.db", Path.Combine(Environment.CurrentDirectory, "Data","AppUsage.xlsx"));
+        if (!Directory.Exists(Path.Combine(Environment.CurrentDirectory, "Data")))
+            Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory, "Data"));
+        databaseToExcel.Convert("AppUsage.db", Path.Combine(Environment.CurrentDirectory, "Data", "AppUsage.xlsx"));
     }
 
     private void ButtonDelete_OnClick(object? sender, RoutedEventArgs e) {

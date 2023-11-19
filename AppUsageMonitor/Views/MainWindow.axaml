@@ -119,7 +119,9 @@
                                 Background="#10E6E6E6"
                                 FontWeight="Heavy"
                                 FontSize="20"
-                                VerticalAlignment="Top">日统计图表</Button>
+                                VerticalAlignment="Top">
+                            日统计图表
+                        </Button>
                     </StackPanel>
                     <StackPanel Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <Button x:Name="ButtonViewChartWeekly" Command="{Binding ShowChartCommand}" CommandParameter="Weekly"
@@ -128,16 +130,20 @@
                                 Background="#10E6E6E6"
                                 FontWeight="Heavy"
                                 FontSize="20"
-                                VerticalAlignment="Top">周统计图表</Button>
+                                VerticalAlignment="Top">
+                            周统计图表
+                        </Button>
                     </StackPanel>
                     <StackPanel Width="200" HorizontalAlignment="Right" VerticalAlignment="Top">
-                        <Button x:Name="ButtonViewChartMonthly" Command="{Binding ShowChartCommand}"  CommandParameter="Monthly"
+                        <Button x:Name="ButtonViewChartMonthly" Command="{Binding ShowChartCommand}" CommandParameter="Monthly"
                                 Height="50"
                                 Width="165"
                                 Background="#10E6E6E6"
                                 FontWeight="Heavy"
                                 FontSize="20"
-                                VerticalAlignment="Top">月统计图表</Button>
+                                VerticalAlignment="Top">
+                            月统计图表
+                        </Button>
                     </StackPanel>
                 </DockPanel>
             </StackPanel>

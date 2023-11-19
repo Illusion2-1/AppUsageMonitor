@@ -8,12 +8,11 @@
         x:Class="AppUsageMonitor.Views.ChartWindow"
         x:DataType="viewModels:ChartWindowViewModel"
         Title="ChartWindow">
-        <Window.DataContext>
-                <viewModels:ChartWindowViewModel />
-        </Window.DataContext>
-        <lvc:CartesianChart
-                Series="{Binding Series}"
-                XAxes="{Binding XAxes}"
-                YAxes="{Binding YAxes}">
-        </lvc:CartesianChart>
+    <Window.DataContext>
+        <viewModels:ChartWindowViewModel />
+    </Window.DataContext>
+    <lvc:CartesianChart
+        Series="{Binding Series}"
+        XAxes="{Binding XAxes}"
+        YAxes="{Binding YAxes}" />
 </Window>
