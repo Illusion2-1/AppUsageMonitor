@@ -13,9 +13,8 @@ using Avalonia.Markup.Xaml;
 namespace AppUsageMonitor.Views;
 
 public partial class MainWindow : Window {
-    private readonly Monitor _monitor = new("AppUsage.db");
-    private string? _selectedProcess = new("");
-
+    public static readonly Monitor Monitor = new("AppUsage.db");
+    public static string? SelectedProcess = new("");
     public MainWindow() {
         InitializeComponent();
         Features = this.FindControl<ListBox>("Features");
@@ -39,7 +38,7 @@ public partial class MainWindow : Window {
 
     private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
         if (e.AddedItems.Count > 0) {
-            _selectedProcess = ListSelectProgram.SelectedItem?.ToString();
+            SelectedProcess = ListSelectProgram.SelectedItem?.ToString();
             ListSelectProgram.SelectedIndex = -1;
             Features.SelectedIndex = 1;
         }
@@ -89,7 +88,7 @@ public partial class MainWindow : Window {
                 break;
             case 1:
                 PanelViewThisMonth.IsVisible = true;
-                CurrentProgramTextBlock.Text = _selectedProcess;
+                CurrentProgramTextBlock.Text = SelectedProcess;
                 TodayUsageTextBlock.Text = GetToday();
                 MonthUsageTextBlock.Text = GetThisMonth();
                 break;
@@ -116,15 +115,15 @@ public partial class MainWindow : Window {
     }
 
     private bool IsAdductionSuccess(string? processName) {
-        var rows = _monitor.GetAllApps().Select($"Name='{processName}'").ToArray();
+        var rows = Monitor.GetAllApps().Select($"Name='{processName}'").ToArray();
         if (rows.Length > 0) return false;
 
-        _monitor.AddApp(processName!);
+        Monitor.AddApp(processName!);
         return true;
     }
 
     private string?[] GetAllAppsAsStringArray() {
-        var dataTable = _monitor.GetAllApps();
+        var dataTable = Monitor.GetAllApps();
         var resultArray = dataTable.AsEnumerable()
             .Select(row => row.Field<string>("Name"))
             .ToArray();
@@ -135,13 +134,13 @@ public partial class MainWindow : Window {
         var year = DateTime.Now.Year;
         var month = DateTime.Now.Month;
         var day = DateTime.Now.Day;
-        return TimeParser.ConvertMinutesToTime(_monitor.GetAppUsageByDay(_selectedProcess!, year, month, day));
+        return TimeParser.ConvertMinutesToTime(Monitor.GetAppUsageByDay(SelectedProcess!, year, month, day));
     }
 
     private string GetThisMonth() {
         var year = DateTime.Now.Year;
         var month = DateTime.Now.Month;
-        return TimeParser.ConvertMinutesToTime(_monitor.GetAppUsageByMonth(_selectedProcess!, year, month));
+        return TimeParser.ConvertMinutesToTime(Monitor.GetAppUsageByMonth(SelectedProcess!, year, month));
     }
 
     private void MainWindow_OnClose(object? sender, CancelEventArgs e) {
@@ -154,6 +153,7 @@ public partial class MainWindow : Window {
         Activate();
     }
 
+    // ReSharper disable UnusedParameter.Local
     private void ButtonExport_OnClick(object? sender, RoutedEventArgs e) {
         var databaseToExcel = new DatabaseToExcelConverter();
         if (!Directory.Exists(Path.Combine(Environment.CurrentDirectory, "Data"))) Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory, "Data")) ;
@@ -161,6 +161,6 @@ public partial class MainWindow : Window {
     }
 
     private void ButtonDelete_OnClick(object? sender, RoutedEventArgs e) {
-        _monitor.DeleteApp(_selectedProcess!);
+        Monitor.DeleteApp(SelectedProcess!);
     }
 }

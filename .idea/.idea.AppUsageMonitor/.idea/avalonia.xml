@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="AppUsageMonitor/App.axaml" value="AppUsageMonitor/AppUsageMonitor.csproj" />
+        <entry key="AppUsageMonitor/Views/ChartWindow.axaml" value="AppUsageMonitor/AppUsageMonitor.csproj" />
+        <entry key="AppUsageMonitor/Views/MainWindow.axaml" value="AppUsageMonitor/AppUsageMonitor.csproj" />
+        <entry key="AppUsageMonitor/Views/MessageBox.axaml" value="AppUsageMonitor/AppUsageMonitor.csproj" />
+        <entry key="AppUsageMonitor/Views/UsageChart.axaml" value="AppUsageMonitor/AppUsageMonitor.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

@@ -11,6 +11,7 @@ public class Monitor : Middleware {
     private readonly int _updatePeriod;
     private readonly Middleware _middleware;
     private Dictionary<string, int> _buffer;
+    // ReSharper disable once NotAccessedField.Local
     private Timer _timer;
 
     public Monitor(string databasePath) : base(databasePath) {

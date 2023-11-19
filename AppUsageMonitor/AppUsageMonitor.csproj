@@ -34,6 +34,7 @@
         <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.2" />
         <PackageReference Include="ClosedXML" Version="0.104.0-preview2" />
         <PackageReference Include="EPPlus" Version="7.0.0" />
+        <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc2" />
         <PackageReference Include="Material.Avalonia" Version="3.0.2.44-nightly" />
         <PackageReference Include="NSubsys" Version="1.0.0">
           <PrivateAssets>all</PrivateAssets>

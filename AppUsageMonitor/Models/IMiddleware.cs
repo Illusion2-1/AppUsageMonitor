@@ -29,7 +29,7 @@ public interface IMiddleware {
     /// <param name="year"></param>
     /// <param name="month"></param>
     /// <returns></returns>
-    int[] GetAppUsageByDaysInMonth(string appName, int year, int month);
+    double[] GetAppUsageByDaysInMonth(string appName, int year, int month);
 
     /// <summary>
     /// Returns the total number of minutes used by the app on each month of the specified year.
@@ -37,7 +37,7 @@ public interface IMiddleware {
     /// <param name="appName"></param>
     /// <param name="year"></param>
     /// <returns></returns>
-    int[] GetAppUsageByMonthsInYear(string appName, int year);
+    double[] GetAppUsageByMonthsInYear(string appName, int year);
 
     /// <summary>
     /// Adds the specified app to the database.

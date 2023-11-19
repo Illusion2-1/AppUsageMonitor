@@ -5,9 +5,8 @@ using System.Data.SQLite;
 namespace AppUsageMonitor.Models;
 
 public class Middleware : IMiddleware {
-    private Database _database;
-
-
+    private readonly Database _database;
+    
     public Middleware(string databasePath) {
         _database = new Database(databasePath);
     }
@@ -23,20 +22,54 @@ public class Middleware : IMiddleware {
         var dataTable = _database.GetAppUsageByMonth(id, year, month);
         return dataTable.Rows.Count > 0 ? Convert.ToInt32(dataTable.Rows[0][0]) : 0;
     }
+    
+    public double[] GetAppUsageByDaysInWeek(string appName, int year, int month, int day) {
+        var date = new DateTime(year, month, day);
+        const DayOfWeek firstDayOfWeek = DayOfWeek.Monday;
 
-    public int[] GetAppUsageByDaysInMonth(string appName, int year, int month) {
-        var usage = new int[DateTime.DaysInMonth(year, month)];
-        for (var day = 1; day <= usage.Length; day++) usage[day - 1] = GetAppUsageByDay(appName, year, month, day);
+        // Calculate the start date of the week
+        var daysToSubtract = (int)date.DayOfWeek - (int)firstDayOfWeek;
+        daysToSubtract = daysToSubtract < 0 ? daysToSubtract + 7 : daysToSubtract; // Special handling for Sunday
+        var startDateOfWeek = date.AddDays(-daysToSubtract);
+
+        // Calculate the number of days from the start of the week to the specified date (inclusive)
+        var numberOfDays = (date - startDateOfWeek).Days + 1;
+    
+        var usage = new double[numberOfDays + 1]; // Array starts from index 1
+    
+        for (var i = 1; i <= numberOfDays; i++) {
+            // Calculate the date for the current iteration
+            var currentDate = startDateOfWeek.AddDays(i - 1);
+            // Get the usage in minutes and convert it to hours with one decimal place
+            usage[i] = Math.Round(GetAppUsageByDay(appName, currentDate.Year, currentDate.Month, currentDate.Day) / 60.0, 1);
+        }
 
         return usage;
     }
 
-    public int[] GetAppUsageByMonthsInYear(string appName, int year) {
-        var usage = new int[12];
-        for (var month = 1; month <= usage.Length; month++) usage[month - 1] = GetAppUsageByMonth(appName, year, month);
+    public double[] GetAppUsageByDaysInMonth(string appName, int year, int month) {
+        var daysInMonth = DateTime.DaysInMonth(year, month);
+        var usage = new double[daysInMonth + 1]; // Array starts from index 1
+    
+        for (var day = 1; day <= daysInMonth; day++) {
+            // Get the usage in minutes and convert it to hours with one decimal place
+            usage[day] = Math.Round(GetAppUsageByDay(appName, year, month, day) / 60.0, 1);
+        }
 
         return usage;
     }
+
+    public double[] GetAppUsageByMonthsInYear(string appName, int year) {
+        var usage = new double[13]; // Array starts from index 1
+    
+        for (var month = 1; month <= 12; month++) {
+            // Get the usage in minutes and convert it to hours with one decimal place
+            usage[month] = Math.Round(GetAppUsageByMonth(appName, year, month) / 60.0, 1);
+        }
+
+        return usage;
+    }
+
 
     public void AddApp(string appName) {
         var id = GetNextAppId();

@@ -1,0 +1,19 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+        xmlns:viewModels="clr-namespace:AppUsageMonitor.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250" SizeToContent="WidthAndHeight" CanResize="False"
+        x:Class="AppUsageMonitor.Views.ChartWindow"
+        x:DataType="viewModels:ChartWindowViewModel"
+        Title="ChartWindow">
+        <Window.DataContext>
+                <viewModels:ChartWindowViewModel />
+        </Window.DataContext>
+        <lvc:CartesianChart
+                Series="{Binding Series}"
+                XAxes="{Binding XAxes}"
+                YAxes="{Binding YAxes}">
+        </lvc:CartesianChart>
+</Window>
