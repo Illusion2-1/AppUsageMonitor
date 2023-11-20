@@ -4,7 +4,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
         xmlns:viewModels="clr-namespace:AppUsageMonitor.ViewModels"
-        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250" SizeToContent="WidthAndHeight" CanResize="False"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="800"
+        Height="450"
+        CanResize="true"
         x:Class="AppUsageMonitor.Views.ChartWindow"
         x:DataType="viewModels:ChartWindowViewModel"
         Title="ChartWindow">

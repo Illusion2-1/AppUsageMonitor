@@ -13,7 +13,7 @@
         <None Include="bg\background.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <AvaloniaResource Include="Assets\**"/>
+        <AvaloniaResource Include="Assets\**" />
         <None Update="bg\black.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
@@ -24,31 +24,28 @@
 
 
     <ItemGroup>
-        <PackageReference Include="AsyncImageLoader.Avalonia" Version="3.2.1"/>
-        <PackageReference Include="Avalonia" Version="11.0.2"/>
-        <PackageReference Include="Avalonia.Desktop" Version="11.0.2"/>
-        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.2"/>
-        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.2"/>
+        <PackageReference Include="AsyncImageLoader.Avalonia" Version="3.2.1" />
+        <PackageReference Include="Avalonia" Version="11.0.2" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.0.2" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.2" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.2"/>
-        <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.2"/>
-        <PackageReference Include="DocumentFormat.OpenXml" Version="3.0.0"/>
-        <PackageReference Include="EPPlus" Version="7.0.0"/>
-        <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc2"/>
-        <PackageReference Include="Material.Avalonia" Version="3.0.2.44-nightly"/>
+        <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.2" />
+        <PackageReference Include="EPPlus" Version="7.0.0" />
+        <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc2" />
+        <PackageReference Include="Material.Avalonia" Version="3.0.2.44-nightly" />
         <PackageReference Include="NSubsys" Version="1.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="System.Data.SQLite" Version="1.0.118"/>
+        <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
     </ItemGroup>
-    <UsingTask TaskName="NSubsys.Tasks.NSubsys" AssemblyFile="$(NSubsysTasksPath)"/>
+    <UsingTask TaskName="NSubsys.Tasks.NSubsys" AssemblyFile="$(NSubsysTasksPath)" />
 
     <Target Name="CustomAfterBuild" AfterTargets="Build" Condition="$(RuntimeIdentifier.StartsWith('win'))">
-        <NSubsys TargetFile="$(OutputPath)$(AssemblyName)$(_NativeExecutableExtension)"/>
+        <NSubsys TargetFile="$(OutputPath)$(AssemblyName)$(_NativeExecutableExtension)" />
     </Target>
 
     <Target Name="CustomAfterPublish" AfterTargets="Publish" Condition="$(RuntimeIdentifier.StartsWith('win'))">
-        <NSubsys TargetFile="$(PublishDir)$(AssemblyName)$(_NativeExecutableExtension)"/>
+        <NSubsys TargetFile="$(PublishDir)$(AssemblyName)$(_NativeExecutableExtension)" />
     </Target>
 </Project>
